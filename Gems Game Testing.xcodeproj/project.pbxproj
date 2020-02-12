@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1708C9DF23F4571100D02BD2 /* TouchGesture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1708C9DE23F4571100D02BD2 /* TouchGesture.swift */; };
 		1722522723F4355F00614DB7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1722522623F4355F00614DB7 /* AppDelegate.swift */; };
 		1722522B23F4355F00614DB7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1722522A23F4355F00614DB7 /* ViewController.swift */; };
 		1722522E23F4355F00614DB7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1722522C23F4355F00614DB7 /* Main.storyboard */; };
@@ -17,6 +18,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1708C9DE23F4571100D02BD2 /* TouchGesture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TouchGesture.swift; sourceTree = "<group>"; };
 		1722522323F4355F00614DB7 /* Gems Game Testing.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Gems Game Testing.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1722522623F4355F00614DB7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1722522A23F4355F00614DB7 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -66,6 +68,7 @@
 				1722522A23F4355F00614DB7 /* ViewController.swift */,
 				1722523A23F435D700614DB7 /* BoardView.swift */,
 				1722523C23F4364F00614DB7 /* GemView.swift */,
+				1708C9DE23F4571100D02BD2 /* TouchGesture.swift */,
 			);
 			path = "Gems Game Testing";
 			sourceTree = "<group>";
@@ -141,6 +144,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1708C9DF23F4571100D02BD2 /* TouchGesture.swift in Sources */,
 				1722523D23F4364F00614DB7 /* GemView.swift in Sources */,
 				1722523B23F435D700614DB7 /* BoardView.swift in Sources */,
 				1722522B23F4355F00614DB7 /* ViewController.swift in Sources */,

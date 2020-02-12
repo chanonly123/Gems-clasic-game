@@ -22,6 +22,11 @@ class BoardView: UIView {
     let shiftTime = 0.3
     let insertTime = 0.5
     
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        let gesture = TouchGesture(target: self, action: #selector(onTouch(_:)))
+        addGestureRecognizer(gesture)
+    }
     
     override func layoutSubviews() {
         super.layoutSubviews()
@@ -55,12 +60,16 @@ class BoardView: UIView {
     }
     
     func clearArr(locs: [GemLoc]) {
+        isUserInteractionEnabled = false
         var delay = 0.0
         for each in locs {
             DispatchQueue.main.asyncAfter(deadline: .now() + delay) {
                 self.clearLoc(each)
             }
             delay += 0.1
+        }
+        DispatchQueue.main.asyncAfter(deadline: .now() + delay) {
+            self.isUserInteractionEnabled = true
         }
     }
     
@@ -107,5 +116,75 @@ class BoardView: UIView {
         gem.board = self
         gem.frame.size = CGSize(width: cellSize / 2, height: cellSize / 2)
         gem.center = CGPoint(x: CGFloat(loc.x) * cellSize + cellMid, y: CGFloat(loc.y) * cellSize + cellMid)
+    }
+    
+    var touchSelectedNodes: [GemView] = [] {
+        didSet {
+            lines.removeAll()
+            setNeedsDisplay()
+            if touchSelectedNodes.count < 2 { return }
+            for i in 0..<touchSelectedNodes.count-1 {
+                let path = UIBezierPath()
+                path.lineWidth = 8
+                path.move(to: touchSelectedNodes[i].center)
+                path.addLine(to: touchSelectedNodes[i+1].center)
+                lines.append(path)
+            }
+            setNeedsDisplay()
+        }
+    }
+    
+    var lines = [UIBezierPath]()
+    
+    var selectedColor = UIColor.white
+    
+    @objc func onTouch(_ ges: UIGestureRecognizer) {
+        let point = ges.location(ofTouch: 0, in: self)
+        let x = Int(point.x / cellSize)
+        let y = Int(point.y / cellSize)
+        if x < 0 || x >= size || y < 0 || y >= size {
+            checkAndRemoveNodes()
+            touchSelectedNodes.removeAll()
+            return
+        }
+        let gemView = gemViews[x][y]
+        switch ges.state {
+        case .began:
+            selectedColor = gemView.backgroundColor ?? .white
+            touchSelectedNodes.removeAll()
+            touchSelectedNodes.append(gemView)
+            gemView.addPulse()
+        case .changed:
+            if !touchSelectedNodes.contains(gemView) && shouldSelect(gem: gemView) {
+                touchSelectedNodes.append(gemView)
+                gemView.addPulse()
+            }
+        default:
+            checkAndRemoveNodes()
+            touchSelectedNodes.removeAll()
+        }
+    }
+    
+    override func draw(_ rect: CGRect) {
+        if lines.isEmpty {
+            UIColor.white.setFill()
+            UIGraphicsGetCurrentContext()?.fill(bounds)
+        } else {
+            for each in lines {
+                selectedColor.setStroke()
+                each.stroke()
+            }
+        }
+    }
+    
+    func shouldSelect(gem: GemView) -> Bool {
+        guard let last = touchSelectedNodes.last else { return true }
+        return gem.backgroundColor == last.backgroundColor && gem.loc.isNeigbour(loc: last.loc)
+    }
+    
+    func checkAndRemoveNodes() {
+        if touchSelectedNodes.count > 1 {
+            clearArr(locs: touchSelectedNodes.map({ $0.loc }))
+        }
     }
 }
