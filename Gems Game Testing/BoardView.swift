@@ -166,14 +166,9 @@ class BoardView: UIView {
     }
     
     override func draw(_ rect: CGRect) {
-        if lines.isEmpty {
-            UIColor.white.setFill()
-            UIGraphicsGetCurrentContext()?.fill(bounds)
-        } else {
-            for each in lines {
-                selectedColor.setStroke()
-                each.stroke()
-            }
+        for each in lines {
+            selectedColor.setStroke()
+            each.stroke()
         }
     }
     

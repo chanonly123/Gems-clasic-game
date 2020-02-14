@@ -47,7 +47,7 @@ class GemView: UIView {
     let pulse = CAShapeLayer()
     
     func addPulse() {
-        pulse.fillColor = UIColor.blue.cgColor
+        pulse.fillColor = (backgroundColor ?? .white).cgColor
         pulse.path = UIBezierPath(roundedRect: bounds, cornerRadius: bounds.height / 2).cgPath
         
         let scaleAnimation = CABasicAnimation(keyPath: "transform.scale.xy")
