@@ -28,6 +28,7 @@
 		1722523423F4356100614DB7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1722523A23F435D700614DB7 /* BoardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardView.swift; sourceTree = "<group>"; };
 		1722523C23F4364F00614DB7 /* GemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GemView.swift; sourceTree = "<group>"; };
+		17CB049823F65DE400F477B9 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -44,6 +45,7 @@
 		1722521A23F4355F00614DB7 = {
 			isa = PBXGroup;
 			children = (
+				17CB049823F65DE400F477B9 /* README.md */,
 				1722522523F4355F00614DB7 /* Gems Game Testing */,
 				1722522423F4355F00614DB7 /* Products */,
 			);
